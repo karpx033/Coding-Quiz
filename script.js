@@ -9,6 +9,7 @@ var op4 =document.getElementById("op4");
 var currentquestion=0
 var wins = 0;
 var losses = 0;
+var rw = document.getElementById("answeralert");
 
 var initialtime = 5;
 var testobj =  [
@@ -66,11 +67,17 @@ function guesscheck(answer) {
     if (testobj[currentquestion].correct == answer) {
         wins++;
         currentquestion++;
-        initialtime=5;
         console.log(wins);
         console.log(losses);
+        var score= initialtime;
+        localStorage.setItem("Score", score);
+        initialtime=5;
         startTimer();
         displayquestions();
+        rw.textContent="Correct!"
+        setTimeout(function() {
+            rw.textContent="";
+        }, 3000);
     } else {
         losses++;
         currentquestion++;
@@ -78,6 +85,10 @@ function guesscheck(answer) {
         console.log(losses);
         startTimer();
         displayquestions();
+        rw.textContent="Wrong!"
+        setTimeout(function() {
+            rw.textContent="";
+        }, 3000);
     }
 };
 
