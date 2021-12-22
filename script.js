@@ -14,6 +14,7 @@ var initialsform = document.getElementById("initsubmit");
 
 
 
+
 var initialtime = 5;
 var testobj =  [
     {
@@ -85,7 +86,7 @@ function displayquestions() {
     
     if (testobj.length == currentquestion+1) {
 
-        document.getElementById("scorecount").innerHTML= localStorage.score;
+        document.getElementById("scorecount").innerHTML="Your Score: "+ localStorage.score;
         finalprompt();
     }
 
@@ -117,8 +118,6 @@ function guesscheck(answer) {
 };
 
  function generateform() {
-    // newform.setAttribute('method',"post");
-    // newform.setAttribute('action',"index.html?");
         var init = document.createElement("input");
         init.setAttribute=("type", "text");
         init.id="initsubmit";
@@ -158,16 +157,23 @@ function savehighscore() {
 };
 
 function retrievehighscore() {
-        // Use JSON.parse() to convert text to JavaScript object
-        var lastinitials = JSON.parse(localStorage.getItem("hsTally"));
-        // Check if data is returned, if not exit out of the function
-        if (lastinitials !== null) {
-        document.getElementById("savedinits").innerHTML = lastinitials.initials;
-        document.getElementById("savedscrs").innerHTML = lastinitials.theirscore;
+    var alltherecords = JSON.parse(localStorage.getItem("Records"));
+   console.log(alltherecords);
+   for (let i = 0; i < alltherecords.length; i++) {
+    if (alltherecords[i] !== null) {
+        var eleinitials = document.createElement("h2");
+        var elescores= document.createElement("h2");
+        eleinitials.textContent=alltherecords[i].initials;
+        elescores.textContent=alltherecords[i].theirscore;
+        document.getElementById("highscorebtn").appendChild(eleinitials);
+        document.getElementById("highscorebtn").appendChild(elescores);
+
         } else {
           return;
         }
       }
+  } ;
+   
 
 
 
@@ -188,13 +194,10 @@ start.addEventListener("click", function() {
 
 newform.addEventListener("submit", function(event) {
        event.preventDefault();   
-    //    const val = document.querySelector('input').value; 
        savehighscore();
-        
-    //     console.log(newform);
-    //    console.log(document.getElementById(initsubmit));
-    //    console.log(initialsform);
-    //    const val = document.querySelector('input').value;
-    //     console.log(val);
-        });
+     });
 
+hsbtn.addEventListener("click", function() {
+    retrievehighscore();
+}
+)
