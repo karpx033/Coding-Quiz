@@ -9,6 +9,10 @@ var op4 =document.getElementById("op4");
 var currentquestion=0
 var rw = document.getElementById("answeralert");
 var newform = document.createElement("form");
+var initialsform = document.getElementById("initsubmit");
+
+
+
 
 var initialtime = 5;
 var testobj =  [
@@ -72,14 +76,13 @@ function startTimer() {
 };
 
 function displayquestions() {
-   console.log(test);
     var qscreen = testobj[currentquestion];
     test.textContent= qscreen.question;
     op1.textContent=qscreen.a1;
     op2.textContent=qscreen.a2;
     op3.textContent=qscreen.a3;
     op4.textContent=qscreen.a4;
-
+    
     if (testobj.length == currentquestion+1) {
 
         document.getElementById("scorecount").innerHTML= localStorage.score;
@@ -114,16 +117,20 @@ function guesscheck(answer) {
 };
 
  function generateform() {
-    
+    // newform.setAttribute('method',"post");
+    // newform.setAttribute('action',"index.html?");
         var init = document.createElement("input");
         init.setAttribute=("type", "text");
+        init.id="initsubmit";
         var s = document.createElement("input");
                 s.setAttribute("type", "submit");
                 s.setAttribute("value", "Submit");
+                s.id="clickme";
         newform.appendChild(init);
         newform.appendChild(s);
     document.getElementsByTagName("body")[0]
                .appendChild(newform);
+               
  };
 
 function scorekeeper () {
@@ -136,28 +143,58 @@ function scorekeeper () {
 };
 
 function savehighscore() {
+    const val = document.querySelector('input').value;
     var finalscore = JSON.parse(localStorage.getItem("score"));
     var highscore = {
-        // initials: comment.value.trim() make a form first
-        Hscore: finalscore
-      };
+        initials: val,
+        theirscore: finalscore
+    };
+    localStorage.setItem("hsTally", JSON.stringify(highscore));
+    var Records = [];
+      Records = JSON.parse(localStorage.getItem('Records')) || [];
+   Records.push(highscore);
+    localStorage.setItem('Records', JSON.stringify(Records));
+    
 };
 
 function retrievehighscore() {
+        // Use JSON.parse() to convert text to JavaScript object
+        var lastinitials = JSON.parse(localStorage.getItem("hsTally"));
+        // Check if data is returned, if not exit out of the function
+        if (lastinitials !== null) {
+        document.getElementById("savedinits").innerHTML = lastinitials.initials;
+        document.getElementById("savedscrs").innerHTML = lastinitials.theirscore;
+        } else {
+          return;
+        }
+      }
 
-}
 
 
 function finalprompt() {
     start.remove();
     timerstart.remove();
     generateform();
-}
+ }
+
 
 
 start.addEventListener("click", function() {
+    localStorage.setItem("hsTally","")
     startTimer();
     displayquestions();
    
 });
+
+newform.addEventListener("submit", function(event) {
+       event.preventDefault();   
+    //    const val = document.querySelector('input').value; 
+       savehighscore();
+        
+    //     console.log(newform);
+    //    console.log(document.getElementById(initsubmit));
+    //    console.log(initialsform);
+    //    const val = document.querySelector('input').value;
+    //     console.log(val);
+        });
 
