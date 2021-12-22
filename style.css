@@ -1,4 +1,15 @@
-#op1 {
+body {
+    background-color: burlywood;
+}
+
+
+.qbox {
+    display: flex;
+    justify-content: center;
+}
+
+
+#op1, #op2, #op3, #op4{
     background-color: aqua;
     width: 100%;
     border-style: solid;
@@ -6,10 +17,10 @@
     border-width: 10px;
 }
 
-#op1 {
-    background-color: aqua;
-    width: 100%;
-    border-style: solid;
-    border-color: black;
-    border-width: 10px;
+#countdown {
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: 36px;
+
 }

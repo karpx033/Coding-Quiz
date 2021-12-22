@@ -15,7 +15,7 @@ var initialsform = document.getElementById("initsubmit");
 
 
 
-var initialtime = 5;
+var initialtime = 25;
 var testobj =  [
     {
     question: "What is javascript",

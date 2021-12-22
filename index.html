@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link type="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Document</title>  
 </head>
 <nav>
     <button id="highscorebtn">View Highscores<p id=scorecount></p></button>
@@ -17,20 +17,17 @@
   </nav>
 <body>
     <div> 
-        <h1>Coding Quiz</h1>
-        <h2 id=quizbox></h2>
-        <h3 id=op1 onclick="guesscheck('A')"></h3>
-        <h3 id=op2 onclick="guesscheck('B')"></h3>
-        <h3 id=op3 onclick="guesscheck('C')"></h3>
-        <h3 id=op4 onclick="guesscheck('D')"></h3>
-        <button id="startbtn">Start</button>
+        <h1 class=qbox>Coding Quiz</h1>
+        <h2 class=qbox id=quizbox></h2>
+        <h3 class=qbox id=op1 onclick="guesscheck('A')"></h3>
+        <h3 class=qbox id=op2 onclick="guesscheck('B')"></h3>
+        <h3 class=qbox id=op3 onclick="guesscheck('C')"></h3>
+        <h3 class=qbox id=op4 onclick="guesscheck('D')"></h3>
+        <button class=qbox id="startbtn">Start</button>
         <br>
-        <h2 id=answeralert></h2>
-        <form id="initialsform"></form>
+        <h2 class=qbox id=answeralert></h2>
+        <form class=qbox id="initialsform"></form>
     </div>
-    <span id=pumpkinspice>
-
-    </span>
     <script type= "text/javascript" src="script.js"></script>
 </body>
 </html>
